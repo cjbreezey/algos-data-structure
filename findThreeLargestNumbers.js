@@ -1,3 +1,6 @@
+// ALGO EXPERT FIND THREE LARGEST NUMBERS PROBLEM
+
+
 function findThreeLargestNumbers(array) { //[141, 1, 17, -7, -17, -27, 18, 541, 8, 7, 7]
     let smallest = -Infinity;
     let medium = -Infinity;
