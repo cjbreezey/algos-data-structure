@@ -1,4 +1,5 @@
-
+// ALGO EXPERT THREE NUMBER SUM PROBLEM
+// O(n^2) time, o(n) space
 
 function threeNumberSum(array, targetSum) {
   array.sort((a,b) => a - b); //[12, 3, 1, 2, -6, 5, -8, 6]
