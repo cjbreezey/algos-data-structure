@@ -9,7 +9,7 @@ function steps(n) {
             console.log('#'.repeat(pound))
             pound += 1;
         } else {
-            console.log('#'.repeat(pound) + 'space'.repeat(spaces))
+            console.log('#'.repeat(pound) + ' '.repeat(spaces))
             pound += 1;
             // spaces -= 1;
         }
