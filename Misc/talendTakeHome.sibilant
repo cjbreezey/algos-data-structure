@@ -1,0 +1,95 @@
+;; This project is written in Sibilant, a LISP that transpiles to
+;; javascript. We are using Sibilant because it's similar to our
+;; language of choice, Clojure, but easier to get started with. It
+;; also doesn't have an extensive ecosystem of native libraries, which
+;; means you'll have to work a little harder to do this task :). Sibilant 
+;; documentation and a tutorial can be found here: https://sibilant.org/
+
+;; Install Sibilant by running:
+
+;; npm install -g sibilant
+
+;; Then, copy this file to a local directory and run it to see an
+;; explanation of the project:
+ 
+;; sibilant -x -f project.sibilant 
+
+(console.log "Write a function that will take in a list of strings and")
+(console.log "print a list of each distinct string in the input list,")
+(console.log "along with the number of times the string occurs in the list.")
+(console.log "The strings should be ordered by most to least frequently occuring.")
+
+(var inputs1 ["t" "a" "t" "b" "b" "b" "t" "t" "c" "c" "t" "c"])
+
+;; Your solution goes here.
+
+;; function without any comments describing each line of code
+(def sortCount (array)
+  (var myobj {})
+  (each str array
+    (if (string? str)
+    (if (get myobj str) 
+      (set myobj str (+ (get myobj str) 1))
+      (set myobj str 1))))
+
+  (var entries Object.entries(myobj))
+  (.sort entries (# (a b) (- second(b) second(a))))
+  
+  (get entries)
+)
+;;
+
+(def sortCount (array) ;; defining sortCount function
+
+  (var myobj {}) ;; defining empty object variable
+
+  (each str array ;; iterating through array of strings
+    (if (string? str) ;; checking if item in array is a string
+    (if (get myobj str) ;; if str is found inside object, increment value by 1
+      (set myobj str (+ (get myobj str) 1))
+      (set myobj str 1)))) ;; if str not found inside object, set value to 1
+
+  (var entries Object.entries(myobj)) ;; turning object into array for sorting
+  (.sort entries (# (a b) (- second(b) second(a)))) ;; sorting array descending
+  
+  (get entries) ;; return array descending order as ["str", occurrences]
+)
+sortCount(["t" "a" "t" "b" "b" "b" "t" "t" "c" "c" "t" "c" 1])
+
+
+;; Once you have a solution for the above inputs,
+;; test it against these inputs:
+
+(def gen-input [length]
+  (var samples ["abc" "def" "ghi" "jkl" "mno" "pqr"])
+  (.from Array {length: length}
+               (#> (get samples (.floor Math (* (.random Math)
+	                                        (get samples 'length)))))))
+
+
+	       
+(var inputs2 (gen-input 100))
+(var inputs3 (gen-input 1000))
+
+(def sortCount (array)
+  (var myobj {})
+  (each str array
+    (if (get myobj str) 
+      (set myobj str (+ (get myobj str) 1))
+      (set myobj str 1)))
+
+  (var entries Object.entries(myobj))
+  (.sort entries (# (a b) (- second(b) second(a))))
+  
+  (get entries)
+)
+
+sortCount(inputs2)
+sortCount(inputs3)
+
+;; Can you come up with more tests that exercise your code
+;; in ways that prove it is correct?
+
+(var inputs4 [1 2 3 4 5 6 7 8 9 "a" "b" "a" "b"])
+;; above test case should return [["a", 2], ["b", 2]] because numbers 
+;; are not strings and should not be printed in final output
